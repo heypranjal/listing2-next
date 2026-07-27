@@ -1,8 +1,7 @@
 import type { Property } from './types';
 
-const WP_API =
-  process.env.NEXT_PUBLIC_WP_API ??
-  'https://cms.caasaapaandora.com/wp-json/wp/v2';
+const WP_BASE = process.env.WORDPRESS_API_URL ?? 'https://cms.caasaapaandora.com/wp-json';
+const WP_API = `${WP_BASE}/wp/v2`;
 
 export async function getAllProperties(): Promise<Property[]> {
   try {
