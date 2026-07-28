@@ -138,24 +138,55 @@
 
   document.querySelectorAll('.cp-testimonials').forEach(initTestimonials);
 
-  /* ---- Listings Tab Filter ---- */
+  /* ---- Listings Tab Filter + 2-Row Limit + View More ---- */
   (function () {
-    const tabBar  = document.querySelector('.cp-listings__tabs');
-    const cards   = document.querySelectorAll('.cp-listing-card');
-    if (!tabBar || !cards.length) return;
+    const tabBar   = document.querySelector('.cp-listings__tabs');
+    const grid     = document.getElementById('listings-grid');
+    const moreWrap = document.getElementById('listings-more-wrap');
+    const moreBtn  = document.getElementById('listings-more-btn');
+    const allCards = document.querySelectorAll('.cp-listing-card');
+    if (!tabBar || !allCards.length || !grid) return;
 
-    function filterCards(type) {
-      cards.forEach((card, i) => {
-        const show = type === 'all' || card.dataset.type === type;
-        card.hidden = !show;
-        if (show) {
+    let expanded      = false;
+    let currentFilter = 'all';
+
+    function getColCount() {
+      const cols = getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/);
+      return Math.max(1, cols.length);
+    }
+
+    function applyVisibility() {
+      const cols  = getColCount();
+      const limit = cols * 2;
+      const visible = [];
+
+      allCards.forEach(card => {
+        const matches = currentFilter === 'all' || card.dataset.type === currentFilter;
+        if (matches) visible.push(card);
+        card.hidden = !matches;
+      });
+
+      if (!expanded) {
+        visible.forEach((card, i) => { if (i >= limit) card.hidden = true; });
+      }
+
+      visible.forEach((card, i) => {
+        if (!card.hidden) {
           card.style.animationName = 'none';
           card.style.animationDelay = (i * 0.03) + 's';
-          requestAnimationFrame(() => {
-            card.style.animationName = 'cardAppear';
-          });
+          requestAnimationFrame(() => { card.style.animationName = 'cardAppear'; });
         }
       });
+
+      if (moreWrap) {
+        const hasHidden = !expanded && visible.length > limit;
+        moreWrap.style.display = (hasHidden || expanded && visible.length > limit) ? '' : 'none';
+        if (moreBtn) {
+          moreBtn.textContent = expanded
+            ? 'View Less'
+            : 'View More  (' + (visible.length - limit) + ' more)';
+        }
+      }
     }
 
     tabBar.addEventListener('click', (e) => {
@@ -163,10 +194,28 @@
       if (!btn) return;
       tabBar.querySelectorAll('.cp-listings__tab').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
-      filterCards(btn.dataset.filter);
+      currentFilter = btn.dataset.filter;
+      expanded = false;
+      applyVisibility();
     });
 
-    filterCards('all');
+    if (moreBtn) {
+      moreBtn.addEventListener('click', () => {
+        expanded = !expanded;
+        applyVisibility();
+        if (!expanded) {
+          document.getElementById('listings')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    requestAnimationFrame(() => requestAnimationFrame(applyVisibility));
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(applyVisibility, 150);
+    }, { passive: true });
   })();
 
   /* ---- Form Validation (basic) ---- */
