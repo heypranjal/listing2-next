@@ -13,6 +13,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="https://res.cloudinary.com/maxj0kra/image/upload/w_64,h_64,c_fit/v1785244212/Untitled_design_q6nx2k.jpg" type="image/jpeg" />
+        <link rel="apple-touch-icon" href="https://res.cloudinary.com/maxj0kra/image/upload/w_180,h_180,c_fit/v1785244212/Untitled_design_q6nx2k.jpg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
