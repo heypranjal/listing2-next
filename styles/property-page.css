@@ -153,3 +153,26 @@
 .ctp-form__submit { display:flex; align-items:center; justify-content:center; gap:0.6rem; width:100%; padding:1rem; background:var(--cp-gold); color:var(--cp-navy-deep); font-size:0.78rem; font-weight:800; letter-spacing:0.15em; text-transform:uppercase; border:none; border-radius:50px; cursor:pointer; transition:background 0.25s,transform 0.2s; margin-top:0.5rem; }
 .ctp-form__submit:hover { background:var(--cp-gold-light); transform:translateY(-2px); }
 .ctp-form__privacy { font-size:0.62rem; color:var(--cp-white-30); text-align:center; margin-top:0.75rem; }
+
+/* ── Property page responsive ── */
+@media(max-width:768px) {
+  .ctp-hero__title { font-size:clamp(2rem,7vw,3rem); }
+  .ctp-section { padding:3rem 0; }
+  .ctp-section-head { margin-bottom:2rem; }
+  .ctp-hero__bsp-row { max-width:100%; }
+  .ctp-form-card { padding:1.5rem; }
+  .ctp-hero__btns { gap:0.75rem; }
+  .ctp-btn-primary, .ctp-btn-outline { padding:0.75rem 1.4rem; font-size:0.68rem; }
+}
+@media(max-width:480px) {
+  .ctp-hero__title { font-size:clamp(1.6rem,8vw,2.4rem); }
+  .ctp-hero__sub { font-size:0.78rem; }
+  .ctp-hero__bsp-block { padding:0.75rem 1rem; min-width:100px; }
+  .ctp-hero__bsp-val { font-size:1.2rem; }
+  .ctp-hero__btns { flex-direction:column; align-items:flex-start; }
+  .ctp-section { padding:2.5rem 0; }
+  .ctp-price-card__val { font-size:2.4rem; }
+  .ctp-form-card { padding:1.25rem; }
+  .ctp-sticky-nav__name { font-size:0.8rem; }
+  .ctp-highlights-grid { grid-template-columns:1fr; }
+}
