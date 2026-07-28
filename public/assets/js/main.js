@@ -95,7 +95,7 @@
 
     function goTo(idx) {
       current = (idx + items.length) % items.length;
-      slides.style.transform = `translateX(-${current * 100}%)`;
+      slides.style.transform = `translateX(-${current * (100 / items.length)}%)`;
       dots.forEach((d, i) => d.classList.toggle('active', i === current));
     }
 
