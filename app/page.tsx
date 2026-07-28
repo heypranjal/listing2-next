@@ -203,10 +203,23 @@ export default async function HomePage() {
                   <input type="email" className="cp-contact__input" placeholder="your@email.com" />
                 </div>
                 <div className="cp-contact__field">
-                  <label className="cp-contact__label">Interested In</label>
+                  <label className="cp-contact__label">Enquiry Type</label>
                   <select className="cp-contact__input cp-contact__select">
+                    <option value="">— Select enquiry type —</option>
+                    <option value="site-visit">Schedule a Site Visit</option>
+                    <option value="price">Price &amp; Payment Plan</option>
+                    <option value="brochure">Request Brochure</option>
+                    <option value="investment">Investment Enquiry</option>
+                    <option value="callback">Request a Callback</option>
+                    <option value="general">General Enquiry</option>
+                  </select>
+                </div>
+                <div className="cp-contact__field cp-contact__field--full">
+                  <label className="cp-contact__label">Select Property / Project</label>
+                  <select className="cp-contact__input cp-contact__select">
+                    <option value="">— Choose a property —</option>
                     <optgroup label="— Residential —">
-                      {properties.filter(p => ['residential','duplex'].includes(p.meta.property_type?.toLowerCase() ?? '')).map(p => (
+                      {properties.filter(p => p.meta.property_type?.toLowerCase() === 'residential').map(p => (
                         <option key={p.id} value={p.title.rendered}>{p.title.rendered}</option>
                       ))}
                     </optgroup>
@@ -215,7 +228,17 @@ export default async function HomePage() {
                         <option key={p.id} value={p.title.rendered}>{p.title.rendered}</option>
                       ))}
                     </optgroup>
-                    <option value="general">General Enquiry</option>
+                    <optgroup label="— Commercial —">
+                      {properties.filter(p => p.meta.property_type?.toLowerCase() === 'commercial').map(p => (
+                        <option key={p.id} value={p.title.rendered}>{p.title.rendered}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="— Duplex &amp; Villas —">
+                      {properties.filter(p => p.meta.property_type?.toLowerCase() === 'duplex').map(p => (
+                        <option key={p.id} value={p.title.rendered}>{p.title.rendered}</option>
+                      ))}
+                    </optgroup>
+                    <option value="not-sure">Not sure yet</option>
                   </select>
                 </div>
                 <div className="cp-contact__field cp-contact__field--full">
