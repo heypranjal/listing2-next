@@ -6,7 +6,7 @@ export default function Header() {
           <div className="cp-header__inner">
             <a href="/" className="cp-logo" aria-label="CAASAA PAANDORA Home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://res.cloudinary.com/maxj0kra/image/upload/v1785244212/Untitled_design_q6nx2k.jpg" className="cp-logo__emblem" alt="CAASAA PAANDORA" width={44} height={44} loading="eager" />
+              <img src="https://res.cloudinary.com/maxj0kra/image/upload/v1785245105/Untitled_design_1_xbejfq.jpg" className="cp-logo__emblem" alt="CAASAA PAANDORA" width={44} height={44} loading="eager" />
               <div className="cp-logo__text">
                 <span className="cp-logo__wordmark">CAASAA PAANDORA</span>
                 <span className="cp-logo__sub">Luxury Real Estate</span>
