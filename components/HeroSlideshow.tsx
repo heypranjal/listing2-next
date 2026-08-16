@@ -9,7 +9,6 @@ const SLIDES = [
   'https://res.cloudinary.com/dadfpmrat/image/upload/v1784751273/WEB_BANNER_CPIV_7_gpjhbh.jpg',
   'https://res.cloudinary.com/dadfpmrat/image/upload/v1784751272/WEB_BANNER_CPIV_1_e5p3gy.jpg',
   'https://res.cloudinary.com/dadfpmrat/image/upload/v1784751272/WEB_BANNER_CPIV_6_fae9ll.jpg',
-  'https://res.cloudinary.com/dadfpmrat/image/upload/v1784751272/WEB_BANNER_CPIV_5_wjwdzj.jpg',
 ];
 
 export default function HeroSlideshow() {
